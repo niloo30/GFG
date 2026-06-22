@@ -1,34 +1,30 @@
 class Solution {
   public:
     vector<int> ans;
-    void dfs(int ele ,vector<int>& vis,vector<vector<int>>& adj)
+    void dfs(int node,vector<int>& vis,vector<vector<int>>& adj)
     {
-        ans.push_back(ele);
-        vis[ele]=1;
+        ans.push_back(node);
+        vis[node]=1;
         
-        for(auto it:adj[ele])
+        for(auto ele:adj[node])
         {
-            if(!vis[it])
-            dfs(it,vis,adj);
+            if(!vis[ele])
+            {
+                vis[ele];
+                dfs(ele,vis,adj);
+            }
         }
     }
     vector<int> dfs(vector<vector<int>>& adj) {
         // Code here
-        
         int n=adj.size();
+        
+        int start=0;
         vector<int> vis(n,0);
+        dfs(start,vis,adj);
         
-        ans.push_back(0);
-        vis[0]=1;
-        
-        for(auto ele: adj[0])
-        {
-            if(!vis[ele])
-            {
-                dfs(ele,vis,adj);
-            }
-        }
         return ans;
+        
         
         
     }
